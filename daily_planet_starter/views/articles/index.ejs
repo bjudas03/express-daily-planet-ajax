@@ -5,5 +5,21 @@
 <% articles.forEach(function(article, idx) { %>
   <div class="well">
     <a href="/articles/<%= idx %>"><h2><%= article.title %></h2></a>
+    <a class="delete-link" href="/articles/<%= idx %>"><h2>DELETE</h2></a>
   </div>
 <% }); %>
+
+<script>
+  $('.delete-link').on('click', function(e) {
+    e.preventDefault();
+    var deleteUrl = $(this).attr('href');
+    $.ajax({
+      method: 'DELETE',
+      url: deleteUrl
+    }).done(function(data) {
+      // get data returned from the DELETE route
+      console.log(data);
+    });
+  });
+
+</script>

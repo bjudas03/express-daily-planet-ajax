@@ -44,6 +44,23 @@ app.get('/about', function(req, res) {
     res.render('about');
 });
 
+app.delete('/articles/:index', function(req, res) {
+ var index = parseInt(req.params.index);
+ var articleToDelete = req.params.index;
+ // delete animal here
+ // Read the file into an object
+ // var articles = fs.readFileSync('./data.json');
+ // articles = JSON.parse(articles);
+ // Remove the element with the matching name
+ articles = articles.filter(function(item) {
+  return (item.index !== articleToDelete);
+ });
+
+//Write the object back to the file
+// fs.writeFileSync('./data.json', JSON.stringify(articles));
+// res.send({message: 'success'});
+});
+
 app.listen(3000, function() {
     console.log("You're listening to the smooth sounds of port 3000 in the morning");
 });
