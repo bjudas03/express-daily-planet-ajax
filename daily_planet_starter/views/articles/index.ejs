@@ -5,9 +5,12 @@
 <% articles.forEach(function(article, idx) { %>
   <div class="well">
     <a href="/articles/<%= idx %>"><h2><%= article.title %></h2></a>
+    <a href="/articles/edit/<%= idx %>">Edit</a>
     <a class="delete-link" href="/articles/<%= idx %>"><h2>DELETE</h2></a>
   </div>
 <% }); %>
+
+
 
 <script>
   $('.delete-link').on('click', function(e) {
@@ -19,6 +22,7 @@
     }).done(function(data) {
       // get data returned from the DELETE route
       console.log(data);
+      window.location.reload();
     });
   });
 

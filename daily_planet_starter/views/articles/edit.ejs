@@ -1,0 +1,34 @@
+<!-- <form action="/articles/<%= id %>/edit" method="PUT" id="put-form">
+	<label for="title">Article Title</ -->
+
+		<h1>Edit Article</h1>
+
+<form action="/articles" method="POST" role="form">
+  <div class="form-group">
+    <label for="title" class="hidden">Title</label>
+    <input type="text" class="form-control" id="title" placeholder="Title" name="title">
+  </div>
+
+  <div class="form-group">
+    <label for="body" class="hidden">Body</label>
+    <textarea type="text" class="form-control" id="body" placeholder="Body" name="body"></textarea>
+  </div>
+
+  <button type="submit" id="edit-post" class="btn btn-primary">Submit</button>
+</form>
+
+
+<script>
+  $('#edit-post').on('click', function(e) {
+    e.preventDefault();
+    var deleteUrl = $(this).attr('href');
+    $.ajax({
+      method: 'DELETE',
+      url: deleteUrl
+    }).done(function(data) {
+      console.log(data);
+      window.location.reload();
+    });
+  });
+
+</script>

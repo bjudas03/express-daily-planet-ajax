@@ -44,22 +44,32 @@ app.get('/about', function(req, res) {
     res.render('about');
 });
 
-app.delete('/articles/:index', function(req, res) {
- var index = parseInt(req.params.index);
- var articleToDelete = req.params.index;
- // delete animal here
- // Read the file into an object
- // var articles = fs.readFileSync('./data.json');
- // articles = JSON.parse(articles);
- // Remove the element with the matching name
- articles = articles.filter(function(item) {
-  return (item.index !== articleToDelete);
- });
+// app.get('/articles/edit/id', function(req, res) {
+//     console.log('I am in the get route');
+//     // console.log(req.params.body);
+//     // res.render('/articles/edit' ,({article: articles[req.params.id], idx: req.params.id }));
+// });
 
-//Write the object back to the file
-// fs.writeFileSync('./data.json', JSON.stringify(articles));
-// res.send({message: 'success'});
+
+//edit the articles
+// app.put('/articles/edit/:id', function(req, res) {
+//     var articleId = parseInt(req.params.id);
+//     console.log(articleId);
+//     articles[articleId].title = req.body.title;
+//     articles[articleId.body] = req.body.body;
+//     res.send({message: 'success'});
+// });
+
+app.delete('/articles/:id', function(req, res){
+    var articleId = parseInt(req.params.id);
+    console.log(articleId);
+    articles.splice(articleId,1);
+    res.send({message: 'articleDeleteSuccess'})
+    res.redirect('/articles');
 });
+
+
+
 
 app.listen(3000, function() {
     console.log("You're listening to the smooth sounds of port 3000 in the morning");
